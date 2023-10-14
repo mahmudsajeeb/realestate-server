@@ -33,6 +33,21 @@ app.get('/', (req, res) => {
 app.use("/api/user", router); 
 app.use("/api/auth", authRouter); 
 
+// midleware error handling
+
+// Middleware error handling
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+  return res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,
+  });
+});
+
+
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
