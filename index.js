@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const router = require('./api/routes/userRoutes');
+const authRouter = require("./api/routes/auth.route")
 // const userRouter = require('./api/routes/userRoutes'); 
 
 dotenv.config();
@@ -29,7 +30,8 @@ app.get('/', (req, res) => {
 });
 
 // Routes
-app.use("/api/user", router); // Corrected variable name
+app.use("/api/user", router); 
+app.use("/api/auth", authRouter); 
 
 const port = process.env.PORT || 3000;
 
